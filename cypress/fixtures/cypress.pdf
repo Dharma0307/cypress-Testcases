@@ -1,0 +1,164 @@
+Introduction:
+
+cypress: frontend web automation testing tool 
+         modern web applications (react js, angularjs....)
+         we can automate any application which can runs on browser
+         it will use javascript and typescript for automation , doesnot use any selenium libraries
+         it is open source (cypress dashboard,  test runner: through this we can run the code, write the code )
+         it built on nodejs environment and it comes packages as npm module (node package manager)
+
+we can automate end to end automate test cases
+automate integrate unit api testing
+both developers and QA persons use cypress
+
+cypress : web and api we can do 
+installation is very easy 
+cypress support only javascript and typescript
+cypress support chrome firefox edgedriver
+cypress use mockajs framework only
+cypress is run test inside the browser
+
+cypress eco system
+------
+1. test runner = open source .locally installed
+2. dashboard = paid
+
+main features
+
+1.time travel - it takes the snapshot of everything when you run code 
+2.debuggbility -- cypress have access of dev tools debugging is very easy at that time only we can see the issue without rerun the code again and again 
+3.automatic wait or (built-in-wait)
+4. consistant result (if you the run the test cases n no of time it will shown same result because it run inside browser)
+5. screenshot and videos are automatically captured and recorded
+6. we can run the test cases in mutiple browsers(means cross browser testing)and then run locally or remotely like jenkins, cicd tools
+
+limitations
+
+1.we cant automate windows based applications and mobile based applications
+2.we have limited support of browers
+3.supports only javascript and typescript other than this we cant work in cypress
+4.it is tough to read and writing data is difficult we want to use plugins
+5.third party reporting tool integration is also limited.
+
+Environment setup:
+
+1. Download & install nodejs
+2. download & install vscode
+3. create a new folder for project & open in vs code
+4. open command/terminal then execute below command
+   npm -i init  ---> creates package.json file
+5. then we want to install cypress
+   npm install cypress --save -dev
+6. to start cypress 
+    npx cypress open  (or) node_modules/.bin/cypress open
+
+writing & running test:
+
+-> all the test we writtin in e2e test folder(we write spec files)
+-> extension with cy.js eg(cypress/e2e/mytest.cy.js)
+syntax
+
+describe('My First Test', () => {
+  it('Visits the Kitchen Sink', () => {
+    cy.visit('https://example.cypress.io')         => this is one it block like that we can write no of it blocks
+  })
+})
+
+My First Test : In this place we can give any suite name
+() : represnting a function
+=> : arrow function 
+
+in describe we can write n no of blocks 
+every it block representing one test 
+
+cy => by using this we able to access all the commands in cypress
+
+eg: cy.visit("any url we can use")
+
+to launch cypress application we use npx cypress open(launch cypress)
+
+npx cypress run => this excute specification file it should show the result in terminal window , it will not open cypress window, we cant see any ui(headless mode)
+
+npx cypress run --headed ==> this command run the tests in headed mode , it excutes the tests in browser (headed mode)
+
+if we want to execute specific file : npx cypress run --spec location of specific file(headless mode)
+                                      npx cypress run --browser chrome (we can use this command to open particular browsers)(headless mode)
+                                      npx cypress run --browser chrome --headed(headed mode)
+
+
+
+LOCATORS:
+
+=> css selector supports cypress => direct support
+=> xpath selectors supports cypress but it need some plugins(xpath plugin)
+
+locate the element: by using this methods
+cy.get()  => this command used to locate the element, we want to pass css locater as parameter then get method we able to identify the element
+          => used for only css selector
+
+cy.xpath() => this command used to locate the element, we want to pass xpath locater as parameter then get method we able to identify the element
+           => used for only xpath selector
+
+css Selector : we want add reference if we want  to use all css selector in support folder->commands.js file => <reference types="Cypress" />
+---------
+tag id
+tag class
+tag attribute         in this four selector tag is optional, with this we write
+tag class attribute
+
+
+syntax for checking css id : #id
+                        class : .class                           => if you want to use tag for this four we can add tag first eg: tag#id
+                        attribute : [attribute='value']
+                        class attribute: .class[attribute='value']
+
+Xpath Selector: we want add reference if we want  to use all xpath selector in support folder->commands.js file => <reference types="cypress-xpath" />
+                                                                               support folder -> e2e.js file => require('cypress-xpath')
+------
+if we wanto use xpath in cypess, install plugins 
+command : npm install -D cypress-xpath
+
+
+Asserstion in cypress: validations ein test cases we use asserstions
+--------
+
+they are two types of asserstion 1)Implicit asserstions: these are defaults in cypress    2) explicit asssertion : we want to write in cypress
+                                                         two keywords we use SHOULD, AND                           two keywords we use expect, assert
+all asserstions are comming in child libraries
+
+
+cy.url()-> this is the function which return the current web page url
+SHOULD keywords contains some keys like include, eq(equal to), contain, not.contain, not.equal, have.length, exist, have.value etc... it will supports the should
+cy.title() -> this function return the title of current web page
+cy.xpath("//a") -> this function reutrns all links available in web page
+
+
+expect - BDD(behaviour drivent development approach)
+assert - TDD(Test drivent development approach)
+this two support different paraments
+
+
+
+cypress floder structure:
+
+cypress is main folder: in that we have 1) downloads: downloaded files 2) e2e: we can write the tests 3) fixtures: static test data 4) screenshots: it captured the screen shots
+                                        5) support: reusable scripts in that folder we have 2 folders 
+                                                    1) command.js => we can write custom commands/overwrite existing commands
+                                                    2) e2e.js => loads before tests
+                                        6)videos: it will captured recorded videos
+                                        7) node_modules: it contains cypress modules
+                                        8) cypress.config.js: it contains cypress configurations
+                                        9)package.json: store dependencies for cypress
+
+
+
+
+to install iframe plugin we want to use command => npm install -D cypress-iframe
+
+
+npm install --save-dev @4tw/cypress-drag-drop => drop , drag options
+npm install --save-dev cypress-file-upload => uploading files
+
+
+
+fixtures=> it contains test data files , accepts json file, test file, ...etc it accepts all
